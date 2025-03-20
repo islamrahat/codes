@@ -1,0 +1,26 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#include<math.h>
+int gcd(int a, int b) {while (b != 0) {int temp = b;b = a % b;a = temp;}return a;}
+#define inparr(n, arr) for(int i=0; i<n; i++){scanf("%d", &arr[i]);}
+#define outparr(n, arr) for(int i=0; i<n; i++){printf("%d ", arr[i]);}
+int max(int n, int arr[]) {int max;for(int i=0; i<n; i++){if(arr[i]>max) max = arr[i];}return max;}
+int min(int n, int arr[]) {int min;for(int i=0; i<n; i++){if(arr[i]<min) min = arr[i];}return min;}
+#define sortasc(n, arr) for(int i=0; i<n; i++){for(int j=0; j<n-1; j++){if(arr[j]>arr[j+1]){int temp = arr[j];arr[j] = arr[j+1];arr[j+1] = temp;}}}
+#define sortdesc(n, arr) for(int i=0; i<n; i++){for(int j=0; j<n-1; j++){if(arr[j]<arr[j+1]){int temp = arr[j];arr[j] = arr[j+1];arr[j+1] = temp;}}}
+int main()
+{
+    int number, ans = 0, i=1, count = 0, total = 0;
+    scanf("%d", &number);
+    if(number==1) {printf("1\n"); return 0;}
+    while(number>=total)
+    {
+        ans+=i;
+        i++;
+        total+=ans;
+        if(total<=number) count++;
+    }
+    printf("%d\n", count);
+    return 0;
+}
