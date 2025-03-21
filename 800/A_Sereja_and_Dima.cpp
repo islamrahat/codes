@@ -1,32 +1,35 @@
-#include<stdio.h>
-#include<string.h>
-#include<stdlib.h>
-#include<math.h>
-int gcd(int a, int b) {while (b != 0) {int temp = b;b = a % b;a = temp;}return a;}
-#define inparr(n, arr) for(int i=0; i<n; i++){scanf("%d", &arr[i]);}
-#define outparr(n, arr) for(int i=0; i<n; i++){printf("%d ", arr[i]);}
-int max(int n, int arr[]) {int max;for(int i=0; i<n; i++){if(arr[i]>max) max = arr[i];}return max;}
-int min(int n, int arr[]) {int min;for(int i=0; i<n; i++){if(arr[i]<min) min = arr[i];}return min;}
-#define sortasc(n, arr) for(int i=0; i<n; i++){for(int j=0; j<n-1; j++){if(arr[j]>arr[j+1]){int temp = arr[j];arr[j] = arr[j+1];arr[j+1] = temp;}}}
-#define sortdesc(n, arr) for(int i=0; i<n; i++){for(int j=0; j<n-1; j++){if(arr[j]<arr[j+1]){int temp = arr[j];arr[j] = arr[j+1];arr[j+1] = temp;}}}
+#include<bits/stdc++.h>
+using namespace std;
 int main()
 {
-    int number, f=1, temp, ans1=0, ans2=0;
-    scanf("%d", &number);
-    int arr[number], t=0;
-    inparr(number, arr)
-    while (number--)
+    int number;
+    cin >> number;
+    vector<int> vec(number);
+    for(int i=0; i<number; i++) cin >> vec[i];
+    int sereja=0, dima=0, turn=0;
+    int left=0, right=number-1;
+    while(left<=right)
     {
-        if(arr[number]>arr[t])
+        if(vec[left]>=vec[right])
         {
-            temp = arr[number];
-            arr[number] = 0;
-        } else {temp = arr[t]; arr[t]=0;}
-        t++;
-        if(f) ans1+=temp;
-        else ans2+=temp;
-        f=!f;
+            if(turn==0)
+            {
+                sereja+=vec[left];
+            }
+            else dima+=vec[left];
+            left++;
+        }
+        else
+        {
+            if(turn==0)
+            {
+                sereja+=vec[right];
+            }
+            else dima+=vec[right];
+            right--;
+        }
+        turn=!turn;
     }
-    printf("%d %d\n", ans1, ans2);
+    cout << sereja << " " << dima << endl;
     return 0;
 }
