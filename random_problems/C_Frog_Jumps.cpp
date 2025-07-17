@@ -4,7 +4,6 @@ typedef long long         ll;
 typedef vector<int>       vi;
 typedef vector<long long> vl;
 #define pb push_back
-#define sz(a)             a.size()
 #define ff                first
 #define ss                second
 #define yes               cout << "YES\n";
@@ -16,26 +15,36 @@ typedef vector<long long> vl;
 
 void solve()
 {
-    string number;
-    cin >> number;
-    reverse(all(number));
-    for(int i=sz(number)-1; i>=0; i--)
+    string s;
+    cin >> s;
+    s='S'+s;
+    s=s+'E';
+    int number=s.size();
+    map<char,int> mp;
+    for(int i=0; i<number; i++)
     {
-        if(number[i]=='0') {number.pop_back();}
-        else break;
+        mp[s[i]]++;
     }
-    int a=100, b=100,c=100,d=100;
-    for(int i=0; i<sz(number)-1; i++)
+    if(mp['L']==0) {cout << 1 << endl; return;}
+    if(mp['R']==0) {cout << s.size()-1 << endl; return;}
+    int dists, left=0, right=0, rbuff=0, lbuff=0, diste;
+    for(int i=0; i<number; i++)
     {
-        for(int j=i+1; j<sz(number); j++)
-        {
-            if(number[i]=='0' && number[j]=='0') {a=min(a,(j-i-1)+i);}
-            if(number[i]=='5' && number[j]=='2') {b=min(b,(j-i-1)+i);}
-            if(number[i]=='0' && number[j]=='5') {c=min(c,(j-i-1)+i);}
-            if(number[i]=='5' && number[j]=='7') {d=min(d,(j-i-1)+i);}
-        }
+        if(s[i]=='R') {dists=i; break;}
     }
-    int ans=min(min(a,b),min(c,d));
+    for(int i=0; i<number; i++)
+    {
+        if(s[i]=='R') {diste=i;}
+    }
+    diste=s.size()-diste-1;
+    for(int i=0; i<number-1; i++)
+    {
+        if(s[i]=='L') left++;
+        else {lbuff=max(lbuff,left); left=0;}
+    }
+    lbuff=max(lbuff,left);
+    int ans=max(lbuff+1,dists);
+    ans=max(ans,diste);
     cout << ans << endl;
 }
 

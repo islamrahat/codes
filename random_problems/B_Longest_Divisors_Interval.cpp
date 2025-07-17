@@ -14,21 +14,16 @@ typedef vector<long long> vl;
 
 void solve()
 {
-    string s, target;
-    cin >> s >> target;
-    for(int i=0; i<s.size(); i++)
+    ll number;
+    cin >> number;
+    ll ans=0, temp=0;
+    ll limit=sqrt(number);
+    for(ll i=1; i<=limit+2; i++)
     {
-        if(find(all(target),s[i])!=target.end()) {}
-        else
-        {
-            s.erase(s.begin()+i);
-            i=0;
-        }
+        if(number%i==0) {temp++;}
+        else {ans=max(ans,temp); break;}
     }
-    reverse(all(s));
-    reverse(all(target));
-    int tsize=target.size();
-    cout << s << " " << target << endl;
+    cout << ans << endl;
 }
 
 int main() {

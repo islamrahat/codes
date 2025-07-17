@@ -4,7 +4,6 @@ typedef long long         ll;
 typedef vector<int>       vi;
 typedef vector<long long> vl;
 #define pb push_back
-#define sz(a)             a.size()
 #define ff                first
 #define ss                second
 #define yes               cout << "YES\n";
@@ -16,26 +15,24 @@ typedef vector<long long> vl;
 
 void solve()
 {
-    string number;
+    ll number;
     cin >> number;
-    reverse(all(number));
-    for(int i=sz(number)-1; i>=0; i--)
+    vl vec(1000001);
+    for(ll i=0; i<1000001; i++)
     {
-        if(number[i]=='0') {number.pop_back();}
-        else break;
+        vec[i]=(i+1)*(i+2);
+        vec[i]+=(i*(i+1))/2;
     }
-    int a=100, b=100,c=100,d=100;
-    for(int i=0; i<sz(number)-1; i++)
+    int ans=0;
+    while(number>1)
     {
-        for(int j=i+1; j<sz(number); j++)
+        int buff;
+        for(int i=1; i<1000001; i++)
         {
-            if(number[i]=='0' && number[j]=='0') {a=min(a,(j-i-1)+i);}
-            if(number[i]=='5' && number[j]=='2') {b=min(b,(j-i-1)+i);}
-            if(number[i]=='0' && number[j]=='5') {c=min(c,(j-i-1)+i);}
-            if(number[i]=='5' && number[j]=='7') {d=min(d,(j-i-1)+i);}
+            if(vec[i]>number) {ans++; buff=vec[i-1];break;}
         }
+        number-=buff;
     }
-    int ans=min(min(a,b),min(c,d));
     cout << ans << endl;
 }
 

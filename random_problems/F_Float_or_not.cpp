@@ -14,21 +14,14 @@ typedef vector<long long> vl;
 
 void solve()
 {
-    string s, target;
-    cin >> s >> target;
-    for(int i=0; i<s.size(); i++)
-    {
-        if(find(all(target),s[i])!=target.end()) {}
-        else
-        {
-            s.erase(s.begin()+i);
-            i=0;
-        }
-    }
-    reverse(all(s));
-    reverse(all(target));
-    int tsize=target.size();
-    cout << s << " " << target << endl;
+    string s;
+    cin >> s;
+    int number=s.size();
+    if(s[number-1]=='F') {cout << "float" << endl;}
+    else if(s[number-1]=='L') {cout << "long double" << endl;}
+    else if(find(all(s),'e')!=s.end() && s[number-2]!='e') {cout << "double" << endl;}
+    else if(find(all(s),'e')!=s.end()) {cout << "float" << endl;}
+    else {cout << "other" << endl;}
 }
 
 int main() {

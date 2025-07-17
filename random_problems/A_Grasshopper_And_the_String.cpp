@@ -14,33 +14,31 @@ typedef vector<long long> vl;
 
 void solve()
 {
-    string s, target;
-    cin >> s >> target;
-    for(int i=0; i<s.size(); i++)
+    string s;
+    cin >> s;
+    vector<char> vowel={'A', 'E', 'I', 'O', 'U', 'Y'};
+    int ans=1, temp=1;
+    s='A'+s+'A';
+    for(int i=0; i<s.size()-1; i++)
     {
-        if(find(all(target),s[i])!=target.end()) {}
-        else
+        if(find(all(vowel), s[i])!=vowel.end() && !(find(all(vowel),s[i+1])!=vowel.end()))
         {
-            s.erase(s.begin()+i);
-            i=0;
+            temp++;
         }
+        else if(!(find(all(vowel), s[i])!=vowel.end()) && !(find(all(vowel),s[i+1])!=vowel.end()))
+        {
+            temp++;
+        }
+        else {ans=max(temp,ans); temp=1;}
     }
-    reverse(all(s));
-    reverse(all(target));
-    int tsize=target.size();
-    cout << s << " " << target << endl;
+    cout << ans << endl;
 }
 
 int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
-    int t;
-    cin >> t;
-    while(t--)
-    {
-        solve();
-    }
+    solve();
 
     return 0;
 }

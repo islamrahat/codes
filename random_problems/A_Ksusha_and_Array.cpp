@@ -10,37 +10,32 @@ typedef vector<long long> vl;
 #define no                cout << "NO\n";
 #define all(a)            a.begin(), a.end()
 #define rall(a)           a.rbegin(), a.rend()
+#define PI                acos(-1.0)
 #define poin(x)           cout << fixed << setprecision(x);
 
 void solve()
 {
-    string s, target;
-    cin >> s >> target;
-    for(int i=0; i<s.size(); i++)
+    int number;
+    cin >> number;
+    vi vec;
+    for(int i=0; i<number; i++)
     {
-        if(find(all(target),s[i])!=target.end()) {}
-        else
-        {
-            s.erase(s.begin()+i);
-            i=0;
-        }
+        int a; cin >> a;
+        vec.pb(a);
     }
-    reverse(all(s));
-    reverse(all(target));
-    int tsize=target.size();
-    cout << s << " " << target << endl;
+    int minim = *min_element(all(vec));
+    for(int i=0; i<number; i++)
+    {
+        if(vec[i]%minim!=0) {cout << -1 << endl; return;}
+    }
+    cout << minim << endl;
 }
 
 int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
-    int t;
-    cin >> t;
-    while(t--)
-    {
-        solve();
-    }
+    solve();
 
     return 0;
 }

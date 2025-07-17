@@ -14,21 +14,25 @@ typedef vector<long long> vl;
 
 void solve()
 {
-    string s, target;
-    cin >> s >> target;
-    for(int i=0; i<s.size(); i++)
+    int number, k;
+    cin >> number >> k;
+    vi veca(number), vecb(number);
+    for(int i=0; i<number; i++) cin >> veca[i];
+    for(int i=0; i<number; i++) cin >> vecb[i];
+    sort(rall(veca));
+    sort(all(vecb));
+    ll ans=0;
+    int i=number-1;
+    while(k--)
     {
-        if(find(all(target),s[i])!=target.end()) {}
-        else
-        {
-            s.erase(s.begin()+i);
-            i=0;
-        }
+        if(veca[i]<vecb[i]) swap(veca[i],vecb[i]);
+        i--;
     }
-    reverse(all(s));
-    reverse(all(target));
-    int tsize=target.size();
-    cout << s << " " << target << endl;
+    for(int i=0; i<number; i++)
+    {
+        ans+=veca[i];
+    }
+    cout << ans << endl;
 }
 
 int main() {

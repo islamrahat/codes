@@ -4,7 +4,6 @@ typedef long long         ll;
 typedef vector<int>       vi;
 typedef vector<long long> vl;
 #define pb push_back
-#define sz(a)             a.size()
 #define ff                first
 #define ss                second
 #define yes               cout << "YES\n";
@@ -16,27 +15,18 @@ typedef vector<long long> vl;
 
 void solve()
 {
-    string number;
-    cin >> number;
-    reverse(all(number));
-    for(int i=sz(number)-1; i>=0; i--)
+    int number, k;
+    cin >> number >> k;
+    string s="";
+    for(int i=0; i<k; i++)
     {
-        if(number[i]=='0') {number.pop_back();}
-        else break;
+        s.push_back('1');
     }
-    int a=100, b=100,c=100,d=100;
-    for(int i=0; i<sz(number)-1; i++)
+    if(k<number)
     {
-        for(int j=i+1; j<sz(number); j++)
-        {
-            if(number[i]=='0' && number[j]=='0') {a=min(a,(j-i-1)+i);}
-            if(number[i]=='5' && number[j]=='2') {b=min(b,(j-i-1)+i);}
-            if(number[i]=='0' && number[j]=='5') {c=min(c,(j-i-1)+i);}
-            if(number[i]=='5' && number[j]=='7') {d=min(d,(j-i-1)+i);}
-        }
+        for(int i=0; i<(number-k); i++) s.push_back('0');
     }
-    int ans=min(min(a,b),min(c,d));
-    cout << ans << endl;
+    cout << s << endl;
 }
 
 int main() {

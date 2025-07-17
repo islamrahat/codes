@@ -14,29 +14,21 @@ typedef vector<long long> vl;
 
 void solve()
 {
-    string s, target;
-    cin >> s >> target;
-    for(int i=0; i<s.size(); i++)
-    {
-        if(find(all(target),s[i])!=target.end()) {}
-        else
-        {
-            s.erase(s.begin()+i);
-            i=0;
-        }
-    }
-    reverse(all(s));
-    reverse(all(target));
-    int tsize=target.size();
-    cout << s << " " << target << endl;
+    ll number, k;
+    cin >> number >> k;
+    int ans=0;
+    if(k%4==0) {ans=k/2;}
+    else if(k%4==1) {ans=(k/2)+1;}
+    else if(k%4==2) {ans=number-(k/2)+1;}
+    else {ans=number-(k/2);}
+    cout << ans << endl;
 }
 
 int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
-    int t;
-    cin >> t;
+    int t=3;
     while(t--)
     {
         solve();

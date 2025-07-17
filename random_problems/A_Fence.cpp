@@ -10,25 +10,15 @@ typedef vector<long long> vl;
 #define no                cout << "NO\n";
 #define all(a)            a.begin(), a.end()
 #define rall(a)           a.rbegin(), a.rend()
+#define PI                acos(-1.0)
 #define poin(x)           cout << fixed << setprecision(x);
 
 void solve()
 {
-    string s, target;
-    cin >> s >> target;
-    for(int i=0; i<s.size(); i++)
-    {
-        if(find(all(target),s[i])!=target.end()) {}
-        else
-        {
-            s.erase(s.begin()+i);
-            i=0;
-        }
-    }
-    reverse(all(s));
-    reverse(all(target));
-    int tsize=target.size();
-    cout << s << " " << target << endl;
+    ll a, b, c;
+    cin >> a >> b >> c;
+    ll ans=a+b+c;
+    cout << ans-1 << endl;
 }
 
 int main() {

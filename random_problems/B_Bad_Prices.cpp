@@ -6,6 +6,8 @@ typedef vector<long long> vl;
 #define pb push_back
 #define ff                first
 #define ss                second
+#define forn(n)           for(int i=0; i<n; i++)
+#define forc(cn,abc)      ((cn).find(abc)!=(cn).end())
 #define yes               cout << "YES\n";
 #define no                cout << "NO\n";
 #define all(a)            a.begin(), a.end()
@@ -14,21 +16,18 @@ typedef vector<long long> vl;
 
 void solve()
 {
-    string s, target;
-    cin >> s >> target;
-    for(int i=0; i<s.size(); i++)
+    int number;
+    cin >> number;
+    vi vec(number);
+    forn(number) cin >> vec[i];
+    int ans=0, minim=INT_MAX;
+    reverse(all(vec));
+    for(int i=0; i<number; i++)
     {
-        if(find(all(target),s[i])!=target.end()) {}
-        else
-        {
-            s.erase(s.begin()+i);
-            i=0;
-        }
+        if(vec[i]>minim) ans++;
+        minim=min(minim,vec[i]);
     }
-    reverse(all(s));
-    reverse(all(target));
-    int tsize=target.size();
-    cout << s << " " << target << endl;
+    cout << ans << endl;
 }
 
 int main() {

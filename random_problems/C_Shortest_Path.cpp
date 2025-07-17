@@ -14,21 +14,13 @@ typedef vector<long long> vl;
 
 void solve()
 {
-    string s, target;
-    cin >> s >> target;
-    for(int i=0; i<s.size(); i++)
-    {
-        if(find(all(target),s[i])!=target.end()) {}
-        else
-        {
-            s.erase(s.begin()+i);
-            i=0;
-        }
-    }
-    reverse(all(s));
-    reverse(all(target));
-    int tsize=target.size();
-    cout << s << " " << target << endl;
+    double a, b;
+    cin >> a >> b;
+    if(b<a) swap(a,b);
+    double theta=atan(a/b);
+    double ans=sin(theta)*b;
+    poin(2);
+    cout << ans << endl;
 }
 
 int main() {

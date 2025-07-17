@@ -14,21 +14,20 @@ typedef vector<long long> vl;
 
 void solve()
 {
-    string s, target;
-    cin >> s >> target;
-    for(int i=0; i<s.size(); i++)
+    int a, b;
+    cin >> a >> b;
+    if(a>b)
     {
-        if(find(all(target),s[i])!=target.end()) {}
-        else
-        {
-            s.erase(s.begin()+i);
-            i=0;
-        }
+        cout << "A is the winner by " << a-b << " runs" << endl;
     }
-    reverse(all(s));
-    reverse(all(target));
-    int tsize=target.size();
-    cout << s << " " << target << endl;
+    else if(b>a)
+    {
+        cout << "B is the winner by " << b-a << " runs" << endl;
+    }
+    else 
+    {
+        cout << "A and B has drawn the match" << endl;
+    }
 }
 
 int main() {

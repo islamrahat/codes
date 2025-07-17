@@ -14,21 +14,33 @@ typedef vector<long long> vl;
 
 void solve()
 {
-    string s, target;
-    cin >> s >> target;
-    for(int i=0; i<s.size(); i++)
+    int number;
+    cin >> number;
+    vi vec(number);
+    for(int i=0; i<number; i++) cin >> vec[i];
+    sort(all(vec));
+    int fodd=0, feven=0, bodd=0, beven=0;
+    for(int i=0; i<number; i++)
     {
-        if(find(all(target),s[i])!=target.end()) {}
-        else
-        {
-            s.erase(s.begin()+i);
-            i=0;
-        }
+        if(vec[i]%2!=0) break;
+        fodd++;
     }
-    reverse(all(s));
-    reverse(all(target));
-    int tsize=target.size();
-    cout << s << " " << target << endl;
+    for(int i=0; i<number; i++)
+    {
+        if(vec[i]%2==0) break;
+        feven++;
+    }
+    for(int i=number-1; i>=0; i--)
+    {
+        if(vec[i]%2!=0) break;
+        bodd++;
+    }
+    for(int i=number-1; i>=0; i--)
+    {
+        if(vec[i]%2==0) break;
+        beven++;
+    }
+    cout << min(fodd+bodd,feven+beven) << endl;
 }
 
 int main() {

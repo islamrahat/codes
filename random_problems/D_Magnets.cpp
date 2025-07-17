@@ -14,33 +14,33 @@ typedef vector<long long> vl;
 
 void solve()
 {
-    string s, target;
-    cin >> s >> target;
-    for(int i=0; i<s.size(); i++)
+    string s="";
+    while(s!="END")
     {
-        if(find(all(target),s[i])!=target.end()) {}
-        else
+        int f=1;
+        getline(cin,s);
+        int count[150]={};
+        for(int i=0; i<s.size(); i++)
         {
-            s.erase(s.begin()+i);
-            i=0;
+            if(s[i]!=' ') count[s[i]]++;
+        }
+        for(int i=0; i<150; i++)
+        {
+            if(count[i]>1) {f=0; break;}
+        }
+        if(s=="END") {break;}
+        if(f==1)
+        {
+            cout << s << endl;
         }
     }
-    reverse(all(s));
-    reverse(all(target));
-    int tsize=target.size();
-    cout << s << " " << target << endl;
 }
 
 int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
-    int t;
-    cin >> t;
-    while(t--)
-    {
-        solve();
-    }
+    solve();
 
     return 0;
 }

@@ -4,7 +4,6 @@ typedef long long         ll;
 typedef vector<int>       vi;
 typedef vector<long long> vl;
 #define pb push_back
-#define sz(a)             a.size()
 #define ff                first
 #define ss                second
 #define yes               cout << "YES\n";
@@ -16,27 +15,23 @@ typedef vector<long long> vl;
 
 void solve()
 {
-    string number;
-    cin >> number;
-    reverse(all(number));
-    for(int i=sz(number)-1; i>=0; i--)
+    int a, b, c, d;
+    cin >> a >> b >> c >> d;
+    if(a<d && b<=c)
     {
-        if(number[i]=='0') {number.pop_back();}
-        else break;
+        if(b<=a) cout << "Gellyfish" << endl;
+        else cout << "Flower" << endl;
     }
-    int a=100, b=100,c=100,d=100;
-    for(int i=0; i<sz(number)-1; i++)
+    else if(a>=d && b<=c)
     {
-        for(int j=i+1; j<sz(number); j++)
-        {
-            if(number[i]=='0' && number[j]=='0') {a=min(a,(j-i-1)+i);}
-            if(number[i]=='5' && number[j]=='2') {b=min(b,(j-i-1)+i);}
-            if(number[i]=='0' && number[j]=='5') {c=min(c,(j-i-1)+i);}
-            if(number[i]=='5' && number[j]=='7') {d=min(d,(j-i-1)+i);}
-        }
+        cout << "Gellyfish" << endl;
     }
-    int ans=min(min(a,b),min(c,d));
-    cout << ans << endl;
+    else if(a<d && b>=(c+1)) cout << "Flower" << endl;
+    else
+    {
+        if(d<=c) cout << "Gellyfish" << endl;
+        else cout << "Flower" << endl;
+    }
 }
 
 int main() {

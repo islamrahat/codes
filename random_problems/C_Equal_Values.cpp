@@ -4,7 +4,6 @@ typedef long long         ll;
 typedef vector<int>       vi;
 typedef vector<long long> vl;
 #define pb push_back
-#define sz(a)             a.size()
 #define ff                first
 #define ss                second
 #define yes               cout << "YES\n";
@@ -14,29 +13,28 @@ typedef vector<long long> vl;
 #define PI                acos(-1.0)
 #define poin(x)           cout << fixed << setprecision(x);
 
+int right(int n, int i, int ai)
+{
+    return (n-i)*ai;
+}
+int left(int n, int i, int ai)
+{
+    return (i-1)*ai;
+}
+
 void solve()
 {
-    string number;
+    int number;
     cin >> number;
-    reverse(all(number));
-    for(int i=sz(number)-1; i>=0; i--)
+    vi vec(number);
+    for(int i=0; i<number; i++) cin >> vec[i];
+    vi ans(number,0);
+    for(int i=0; i<number; i++)
     {
-        if(number[i]=='0') {number.pop_back();}
-        else break;
+        ans[i]=right(number,(i),vec[i])+left(number,(i),vec[i]);
     }
-    int a=100, b=100,c=100,d=100;
-    for(int i=0; i<sz(number)-1; i++)
-    {
-        for(int j=i+1; j<sz(number); j++)
-        {
-            if(number[i]=='0' && number[j]=='0') {a=min(a,(j-i-1)+i);}
-            if(number[i]=='5' && number[j]=='2') {b=min(b,(j-i-1)+i);}
-            if(number[i]=='0' && number[j]=='5') {c=min(c,(j-i-1)+i);}
-            if(number[i]=='5' && number[j]=='7') {d=min(d,(j-i-1)+i);}
-        }
-    }
-    int ans=min(min(a,b),min(c,d));
-    cout << ans << endl;
+    int minim=*min_element(all(ans));
+    cout << minim << endl;
 }
 
 int main() {
